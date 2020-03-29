@@ -6,7 +6,7 @@ enum Color {
     Green = 'green'
 }
 
-export class AdventureCard {
+export class AdventurerCard {
     color: string
     weight: number
     constructor(color: string, weight: number) {
