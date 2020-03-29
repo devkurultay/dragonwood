@@ -27,11 +27,20 @@ interface CardWithInstruction {
     instruction: string
 }
 
+export enum EventType {
+    PassOneCardToRight = 'PassOneCardToRight',
+    RemoveAllEnhancements = 'RemoveAllEnhancements',
+    DiscardOneAdvCard = 'DiscardOneAdvCard',
+    DrawTwoCards = 'DrawTwoCards'
+}
+
 export class EventCard extends DragonWoodCard implements CardWithInstruction {
     instruction: string
-    constructor(name: string, instruction: string) {
+    eventType: string
+    constructor(name: string, instruction: string, eventType: string) {
         super(name)
         this.instruction = instruction
+        this.eventType = eventType
     }
 }
 

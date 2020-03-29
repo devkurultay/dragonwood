@@ -4,7 +4,8 @@ import {
     RegularCard
 } from "../entities/advernture_cards"
 import {
-    EnhancementCards
+    EnhancementCards,
+    EventCards
 } from '../entities/constants'
 import { Color } from "../entities/advernture_cards"
 import { DragonWoodCard } from "../entities/dragonwood_cards"
@@ -30,5 +31,5 @@ export function createAdventurerCards (): Array<AdventurerCard> {
 }
 
 export function createDragonWoodCards(): Array<DragonWoodCard> {
-    return EnhancementCards
+    return [...EnhancementCards, ...EventCards]
 }

@@ -3,7 +3,9 @@ import {
     EnhancementCard,
     EnhancementAbility,
     EnhancementLifecycle,
-    PointsAdder
+    PointsAdder,
+    EventCard,
+    EventType
 } from "./dragonwood_cards";
 
 const charmedPotion = new EnhancementCard(
@@ -113,4 +115,32 @@ export const EnhancementCards = [
     silverSword,
     bucketOfSpinach,
     luckyMushroom
+]
+
+const windStorm = new EventCard(
+    'WIND STORM',
+    'All players pass 1 Adventurer card to the right.',
+    EventType.PassOneCardToRight
+)
+const quickSand = new EventCard(
+    'QUICKSAND',
+    'Remove all enhancements in the Landscape. Replace with new cards.',
+    EventType.RemoveAllEnhancements
+)
+const thunderStorm = new EventCard(
+    'THUNDER STORM',
+    'All players must discard 1 Adventurer card',
+    EventType.DiscardOneAdvCard
+)
+const sunnyDay = new EventCard(
+    'SUNNY DAY',
+    'All players draw 2 cards.',
+    EventType.DrawTwoCards
+)
+
+export const EventCards = [
+    windStorm,
+    quickSand,
+    thunderStorm,
+    sunnyDay
 ]
