@@ -1,12 +1,12 @@
-import { AdventureCard } from '../entities/advernture_cards'
+import { AdventurerCard } from '../entities/advernture_cards'
 import { CapturableCard } from '../entities/landscape_cards'
 
 class Movement {
     landscapeCard: CapturableCard
-    advCards: Array<AdventureCard>
+    advCards: Array<AdventurerCard>
     wayToCapture: string
 
-    constructor (currentCard: CapturableCard, advCards: Array<AdventureCard>, wayToCapture: string) {
+    constructor (currentCard: CapturableCard, advCards: Array<AdventurerCard>, wayToCapture: string) {
         this.landscapeCard = currentCard
         this.advCards = advCards
         this.wayToCapture = wayToCapture
