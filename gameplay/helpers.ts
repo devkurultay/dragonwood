@@ -2,9 +2,12 @@ import {
     AdventurerCard,
     LuckyLadyBugCard,
     RegularCard
-} from "../entities/advernture_cards";
-import { Color } from "../entities/advernture_cards";
-import { LandscapeCard } from "../entities/landscape_cards";
+} from "../entities/advernture_cards"
+import {
+    EnhancementCards
+} from '../entities/constants'
+import { Color } from "../entities/advernture_cards"
+import { DragonWoodCard } from "../entities/dragonwood_cards"
 
 function createArrayOfNumbers(n: number): Array<number> {
     return Array.from(Array(n).keys())
@@ -24,4 +27,8 @@ export function createAdventurerCards (): Array<AdventurerCard> {
         cards.push(new LuckyLadyBugCard())
     })
     return cards
+}
+
+export function createDragonWoodCards(): Array<DragonWoodCard> {
+    return EnhancementCards
 }

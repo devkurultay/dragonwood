@@ -4,7 +4,7 @@ export enum WayToCapture {
     Scream = 'scream'
 }
 
-class Cost {
+export class Cost {
     strike: number
     stomp: number
     scream: number
@@ -23,7 +23,11 @@ export abstract class DragonWoodCard {
     }
 }
 
-export class EventCard extends DragonWoodCard {
+interface CardWithInstruction {
+    instruction: string
+}
+
+export class EventCard extends DragonWoodCard implements CardWithInstruction {
     instruction: string
     constructor(name: string, instruction: string) {
         super(name)
@@ -60,28 +64,48 @@ export class CreatureCard extends CapturableCard {
     }
 }
 
-enum EnhancementLifecycle {
+export enum EnhancementLifecycle {
     UseOnce = 'UseOnce',
     UseThroughoutGage = 'UseThroughoutGage'
 }
 
-class PointsAdder {}
-
-class EnhancementAbility {
-    cardUsageType: string
-    canReRoll: boolean
-    pointsAdder: PointsAdder | null
-    constructor(cardUsageType: string, canReRoll: boolean, pointsAdder?: PointsAdder) {
-        this.cardUsageType = cardUsageType
-        this.canReRoll = canReRoll
-        this.pointsAdder = PointsAdder
+export class PointsAdder {
+    anyAttempt: number
+    strike: number
+    stomp: number
+    scream: number
+    constructor (anyAttempt: number, strike: number, stomp: number, scream: number) {
+        this.anyAttempt = anyAttempt
+        this.strike = strike
+        this.stomp = stomp
+        this.scream = scream
     }
 }
 
-export class EnhancementCard extends CapturableCard {
+export class EnhancementAbility {
+    cardUsageType: string
+    canReRoll: boolean
+    canBeUsedAsAnyAdvCard: boolean
+    pointsAdder: PointsAdder | undefined
+    constructor(
+        cardUsageType: string,
+        canReRoll: boolean,
+        canBeUsedAsAnyAdvCard: boolean,
+        pointsAdder?: PointsAdder
+        ) {
+        this.cardUsageType = cardUsageType
+        this.canReRoll = canReRoll
+        this.canBeUsedAsAnyAdvCard = canBeUsedAsAnyAdvCard
+        this.pointsAdder = pointsAdder
+    }
+}
+
+export class EnhancementCard extends CapturableCard implements CardWithInstruction {
     ability: EnhancementAbility
-    constructor(name: string, cost: Cost, ability: EnhancementAbility) {
+    instruction: string
+    constructor(name: string, cost: Cost, instruction: string, ability: EnhancementAbility) {
         super(name, cost)
         this.ability = ability
+        this.instruction = instruction
     }
 }
