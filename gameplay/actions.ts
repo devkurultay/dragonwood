@@ -1,5 +1,5 @@
 import { AdventurerCard } from '../entities/advernture_cards'
-import { CapturableCard } from '../entities/landscape_cards'
+import { CapturableCard } from '../entities/dragonwood_cards'
 
 class Movement {
     landscapeCard: CapturableCard

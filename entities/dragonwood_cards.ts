@@ -16,14 +16,14 @@ class Cost {
     }
 }
 
-export abstract class LandscapeCard {
+export abstract class DragonWoodCard {
     name: string
     constructor(name: string) {
         this.name = name
     }
 }
 
-export class EventCard extends LandscapeCard {
+export class EventCard extends DragonWoodCard {
     instruction: string
     constructor(name: string, instruction: string) {
         super(name)
@@ -31,7 +31,7 @@ export class EventCard extends LandscapeCard {
     }
 }
 
-export abstract class CapturableCard extends LandscapeCard {
+export abstract class CapturableCard extends DragonWoodCard {
     cost: Cost
     constructor(name: string, cost: Cost) {
         super(name)
@@ -60,14 +60,28 @@ export class CreatureCard extends CapturableCard {
     }
 }
 
-class SuperAbility {
+enum EnhancementLifecycle {
+    UseOnce = 'UseOnce',
+    UseThroughoutGage = 'UseThroughoutGage'
+}
 
+class PointsAdder {}
+
+class EnhancementAbility {
+    cardUsageType: string
+    canReRoll: boolean
+    pointsAdder: PointsAdder | null
+    constructor(cardUsageType: string, canReRoll: boolean, pointsAdder?: PointsAdder) {
+        this.cardUsageType = cardUsageType
+        this.canReRoll = canReRoll
+        this.pointsAdder = PointsAdder
+    }
 }
 
 export class EnhancementCard extends CapturableCard {
-    superAbility: SuperAbility
-    constructor(name: string, cost: Cost, superAbility: SuperAbility) {
+    ability: EnhancementAbility
+    constructor(name: string, cost: Cost, ability: EnhancementAbility) {
         super(name, cost)
-        this.superAbility = superAbility
+        this.ability = ability
     }
 }
