@@ -6,10 +6,15 @@ export enum Color {
     Green = 'Green'
 }
 
-export class AdventurerCard {
+export abstract class AdventurerCard {}
+
+export class LuckyLadyBugCard extends AdventurerCard {}
+
+export class RegularCard extends AdventurerCard {
     color: string
     weight: number
     constructor(color: string, weight: number) {
+        super()
         this.color = color
         this.weight = weight
     }
