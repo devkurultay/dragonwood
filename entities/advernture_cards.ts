@@ -1,9 +1,9 @@
-enum Color {
-    Blue = 'blue',
-    Red = 'red',
-    Orange = 'orange',
-    Violet = 'violet',
-    Green = 'green'
+export enum Color {
+    Blue = 'Blue',
+    Red = 'Red',
+    Orange = 'Orange',
+    Violet = 'Violet',
+    Green = 'Green'
 }
 
 export class AdventurerCard {
