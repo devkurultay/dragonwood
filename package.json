@@ -2,7 +2,7 @@
   "name": "dragonwood",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "output/index.js",
   "scripts": {
     "test": "mocha --require ts-node/register --watch-extensions ts 'tests/**/*.ts'"
   },
