@@ -13,6 +13,7 @@ import {
 } from '../common/utils'
 import { Color } from "../entities/advernture_cards"
 import { DragonWoodCard } from "../entities/dragonwood_cards"
+import { Player } from "../entities/player"
 
 export function createAdventurerCards (): Array<AdventurerCard> {
     const colors = Object.keys(Color)
@@ -32,4 +33,9 @@ export function createAdventurerCards (): Array<AdventurerCard> {
 
 export function createDragonWoodCards(): Array<DragonWoodCard> {
     return [...EnhancementCards, ...EventCards, ...CreatureCards]
+}
+
+export function createPlayers(numberOfPlayers: number) {
+    const num = createArrayOfNumbers(numberOfPlayers, 1)
+    return num.map((n: number) => new Player())
 }

@@ -1,6 +1,7 @@
 import { expect } from 'chai'
 import {
-    distributeAdventurerCards
+    distributeAdventurerCards,
+    Game
 } from '../gameplay/actions'
 import { Player } from '../entities/player'
 import { createAdventurerCards } from '../gameplay/helpers'
@@ -16,5 +17,11 @@ describe('actions', () => {
         playersWithCards.forEach((p: Player) => {
             expect(p.deck.length).to.equal(5)
         })
+    })
+    it('should start game', () => {
+        const numberOfPlayers = 4
+        const game = new Game(numberOfPlayers)
+        expect(game.start()).to.equal('Game started with 4 players.')
+        expect(game.players.length).to.equal(numberOfPlayers)
     })
 })

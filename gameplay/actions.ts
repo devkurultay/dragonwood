@@ -2,6 +2,9 @@ import { AdventurerCard } from '../entities/advernture_cards'
 import { CapturableCard } from '../entities/dragonwood_cards'
 import { Player } from '../entities/player'
 import { INITIAL_NUMBER_OF_ADV_CARDS } from '../common/constants'
+import {
+    createPlayers
+} from './helpers'
 
 export function distributeAdventurerCards(players: Array<Player>, adventurerCards: Array<AdventurerCard>) {
     return players.map((p: Player) => {
@@ -10,6 +13,22 @@ export function distributeAdventurerCards(players: Array<Player>, adventurerCard
         }
         return p
     })
+}
+
+export class Game {
+    players: Array<Player> = []
+
+    constructor(numberOfPlayers: number) {
+        this.players = createPlayers(4)
+    }
+
+    start() {
+        const playersNum = this.players.length
+        const playersPluralized = playersNum > 1
+          ? 'players'
+          : 'player'
+        return `Game started with ${playersNum} ${playersPluralized}.`
+    }
 }
 
 class Movement {
