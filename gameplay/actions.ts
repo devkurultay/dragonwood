@@ -1,5 +1,16 @@
 import { AdventurerCard } from '../entities/advernture_cards'
 import { CapturableCard } from '../entities/dragonwood_cards'
+import { Player } from '../entities/player'
+import { INITIAL_NUMBER_OF_ADV_CARDS } from '../common/constants'
+
+export function distributeAdventurerCards(players: Array<Player>, adventurerCards: Array<AdventurerCard>) {
+    return players.map((p: Player) => {
+        for (let i = 0; i < INITIAL_NUMBER_OF_ADV_CARDS; i++) {
+            p.addCardToDeck(adventurerCards[i])
+        }
+        return p
+    })
+}
 
 class Movement {
     landscapeCard: CapturableCard
