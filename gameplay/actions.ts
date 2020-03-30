@@ -3,7 +3,8 @@ import { CapturableCard } from '../entities/dragonwood_cards'
 import { Player } from '../entities/player'
 import { INITIAL_NUMBER_OF_ADV_CARDS } from '../common/constants'
 import {
-    createPlayers
+    createPlayers,
+    createAdventurerCards
 } from './helpers'
 
 export function distributeAdventurerCards(players: Array<Player>, adventurerCards: Array<AdventurerCard>) {
@@ -27,6 +28,8 @@ export class Game {
         const playersPluralized = playersNum > 1
           ? 'players'
           : 'player'
+        const adventurerCards = createAdventurerCards()
+        distributeAdventurerCards(this.players, adventurerCards)
         return `Game started with ${playersNum} ${playersPluralized}.`
     }
 }
