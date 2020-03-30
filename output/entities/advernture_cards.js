@@ -9,9 +9,16 @@ var Color;
     Color["Green"] = "Green";
 })(Color = exports.Color || (exports.Color = {}));
 class AdventurerCard {
+}
+exports.AdventurerCard = AdventurerCard;
+class LuckyLadyBugCard extends AdventurerCard {
+}
+exports.LuckyLadyBugCard = LuckyLadyBugCard;
+class RegularCard extends AdventurerCard {
     constructor(color, weight) {
+        super();
         this.color = color;
         this.weight = weight;
     }
 }
-exports.AdventurerCard = AdventurerCard;
+exports.RegularCard = RegularCard;

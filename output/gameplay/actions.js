@@ -1,5 +1,15 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+const constants_1 = require("../common/constants");
+function distributeAdventurerCards(players, adventurerCards) {
+    return players.map((p) => {
+        for (let i = 0; i < constants_1.INITIAL_NUMBER_OF_ADV_CARDS; i++) {
+            p.addCardToDeck(adventurerCards[i]);
+        }
+        return p;
+    });
+}
+exports.distributeAdventurerCards = distributeAdventurerCards;
 class Movement {
     constructor(currentCard, advCards, wayToCapture) {
         this.landscapeCard = currentCard;
