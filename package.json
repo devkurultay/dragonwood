@@ -4,7 +4,7 @@
   "description": "",
   "main": "output/index.js",
   "scripts": {
-    "test": "mocha --require ts-node/register --watch-extensions ts 'tests/**/*.ts'"
+    "test": "mocha --require ts-node/register --watch-extensions --recursive 'tests/*.ts'"
   },
   "keywords": [],
   "author": "",
