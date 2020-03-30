@@ -7,12 +7,11 @@ import {
     EnhancementCards,
     EventCards
 } from '../entities/constants'
+import {
+    createArrayOfNumbers
+} from '../common/utils'
 import { Color } from "../entities/advernture_cards"
 import { DragonWoodCard } from "../entities/dragonwood_cards"
-
-function createArrayOfNumbers(n: number): Array<number> {
-    return Array.from(Array(n).keys())
-}
 
 export function createAdventurerCards (): Array<AdventurerCard> {
     const colors = Object.keys(Color)
