@@ -12,5 +12,11 @@ describe('Game', () => {
             expect(p.deck.length).to.equal(5)
         })
     })
-
+    it('should have cards in its Landscape', () => {
+        const numberOfPlayers = 4
+        const game = new Game(numberOfPlayers)
+        expect(game.landscape.length).to.equal(0)
+        game.start()
+        expect(game.landscape.length).to.be.greaterThan(0)
+    })
 })
