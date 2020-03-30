@@ -5,7 +5,8 @@ import {
 } from "../entities/advernture_cards"
 import {
     EnhancementCards,
-    EventCards
+    EventCards,
+    CreatureCards
 } from '../entities/constants'
 import {
     createArrayOfNumbers
@@ -30,5 +31,5 @@ export function createAdventurerCards (): Array<AdventurerCard> {
 }
 
 export function createDragonWoodCards(): Array<DragonWoodCard> {
-    return [...EnhancementCards, ...EventCards]
+    return [...EnhancementCards, ...EventCards, ...CreatureCards]
 }
