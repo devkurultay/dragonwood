@@ -25,18 +25,18 @@ export function distributeAdventurerCards(players: Array<Player>, adventurerCard
 
 export class Game {
     players: Array<Player> = []
-    landscape: Array<DragonWoodCard> = []
-    deck: Array<AdventurerCard> = []
+    dragonWoodCardsDeck: Array<DragonWoodCard> = []
+    adventurerCardsdeck: Array<AdventurerCard> = []
 
     constructor(numberOfPlayers: number) {
         this.players = createPlayers(4)
     }
 
     start() {
-        this.landscape = createDragonWoodCards()
+        this.dragonWoodCardsDeck = createDragonWoodCards()
         const adventurerCards = createAdventurerCards()
         distributeAdventurerCards(this.players, adventurerCards)
-        this.deck = adventurerCards
+        this.adventurerCardsdeck = adventurerCards
         const playersNum = this.players.length
         const playersPluralized = playersNum > 1
           ? 'players'
