@@ -1,7 +1,10 @@
 import { AdventurerCard } from '../entities/advernture_cards'
 import { CapturableCard, DragonWoodCard } from '../entities/dragonwood_cards'
 import { Player } from '../entities/player'
-import { INITIAL_NUMBER_OF_ADV_CARDS, NUMBER_OF_CARDS_ON_LANDSCAPE } from '../common/constants'
+import {
+    INITIAL_NUMBER_OF_ADV_CARDS,
+    MAX_NUMBER_OF_CARDS_ON_LANDSCAPE
+} from '../common/constants'
 import {
     createPlayers,
     createAdventurerCards,
@@ -48,17 +51,17 @@ export class Game {
     }
 
     initializeLandscape() {
-        for (let i = 0; NUMBER_OF_CARDS_ON_LANDSCAPE > i; i++ ) {
+        for (let i = 0; MAX_NUMBER_OF_CARDS_ON_LANDSCAPE > i; i++ ) {
             this.moveCardFromDragonWoodDeckToLandscape()
         }
     }
 
     moveCardFromDragonWoodDeckToLandscape() {
         const [ card ] = this.dragonWoodCardsDeck.splice(0, 1)
-        if (this.landscape.length < NUMBER_OF_CARDS_ON_LANDSCAPE) {
+        if (this.landscape.length < MAX_NUMBER_OF_CARDS_ON_LANDSCAPE) {
             this.landscape.push(card)
         } else {
-            throw Error('Only five Dragonwood cards are allowed on the Landscape!')
+            throw Error('Only 5 Dragonwood cards are allowed on the Landscape!')
         }
     }
 }
