@@ -21,6 +21,12 @@ describe('Game', () => {
         game.start()
         expect(game.dragonWoodCardsDeck.length).to.be.greaterThan(0)
     })
+    it('should have 5 Dragonwood cards in its Landscape', () => {
+        const game = new Game(1)
+        expect(game.landscape.length).to.equal(0)
+        game.start()
+        expect(game.landscape.length).to.equal(5)
+    })
     it('should have Adventurer cards in its Adventurer cards Deck', () => {
         const numberOfPlayers = 4
         const expectedNumberOfAdventurerCardsInDeck = 64 - (4 * 5)

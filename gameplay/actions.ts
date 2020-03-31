@@ -1,7 +1,7 @@
 import { AdventurerCard } from '../entities/advernture_cards'
 import { CapturableCard, DragonWoodCard } from '../entities/dragonwood_cards'
 import { Player } from '../entities/player'
-import { INITIAL_NUMBER_OF_ADV_CARDS } from '../common/constants'
+import { INITIAL_NUMBER_OF_ADV_CARDS, NUMBER_OF_CARDS_ON_LANDSCAPE } from '../common/constants'
 import {
     createPlayers,
     createAdventurerCards,
@@ -26,6 +26,7 @@ export function distributeAdventurerCards(players: Array<Player>, adventurerCard
 export class Game {
     players: Array<Player> = []
     dragonWoodCardsDeck: Array<DragonWoodCard> = []
+    landscape: Array<DragonWoodCard> = []
     adventurerCardsdeck: Array<AdventurerCard> = []
 
     constructor(numberOfPlayers: number) {
@@ -37,11 +38,28 @@ export class Game {
         const adventurerCards = createAdventurerCards()
         distributeAdventurerCards(this.players, adventurerCards)
         this.adventurerCardsdeck = adventurerCards
+        this.initializeLandscape()
+
         const playersNum = this.players.length
         const playersPluralized = playersNum > 1
           ? 'players'
           : 'player'
         return `Game started with ${playersNum} ${playersPluralized}.`
+    }
+
+    initializeLandscape() {
+        for (let i = 0; NUMBER_OF_CARDS_ON_LANDSCAPE > i; i++ ) {
+            this.moveCardFromDragonWoodDeckToLandscape()
+        }
+    }
+
+    moveCardFromDragonWoodDeckToLandscape() {
+        const [ card ] = this.dragonWoodCardsDeck.splice(0, 1)
+        if (this.landscape.length < NUMBER_OF_CARDS_ON_LANDSCAPE) {
+            this.landscape.push(card)
+        } else {
+            throw Error('Only five Dragonwood cards are allowed on the Landscape!')
+        }
     }
 }
 

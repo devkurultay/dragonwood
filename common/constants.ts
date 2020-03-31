@@ -1,1 +1,2 @@
 export const INITIAL_NUMBER_OF_ADV_CARDS = 5
+export const NUMBER_OF_CARDS_ON_LANDSCAPE = 5
