@@ -8,18 +8,25 @@ import {
     createDragonWoodCards
 } from './helpers'
 
-export function distributeAdventurerCards(players: Array<Player>, adventurerCards: Array<AdventurerCard>) {
-    return players.map((p: Player) => {
-        for (let i = 0; i < INITIAL_NUMBER_OF_ADV_CARDS; i++) {
-            p.addCardToDeck(adventurerCards[i])
+export function giveUserAdventurereCards(player: Player, adventurerCards: Array<AdventurerCard>) {
+    adventurerCards.forEach((_: AdventurerCard, ind: number) => {
+        if (INITIAL_NUMBER_OF_ADV_CARDS > ind) {
+            const elem = adventurerCards.splice(ind, 1)
+            player.addCardToDeck([...elem])
         }
-        return p
+    })
+}
+
+export function distributeAdventurerCards(players: Array<Player>, adventurerCards: Array<AdventurerCard>) {
+    players.forEach((p: Player) => {
+        giveUserAdventurereCards(p, adventurerCards)
     })
 }
 
 export class Game {
     players: Array<Player> = []
     landscape: Array<DragonWoodCard> = []
+    deck: Array<AdventurerCard> = []
 
     constructor(numberOfPlayers: number) {
         this.players = createPlayers(4)
@@ -29,7 +36,7 @@ export class Game {
         this.landscape = createDragonWoodCards()
         const adventurerCards = createAdventurerCards()
         distributeAdventurerCards(this.players, adventurerCards)
-
+        this.deck = adventurerCards
         const playersNum = this.players.length
         const playersPluralized = playersNum > 1
           ? 'players'
