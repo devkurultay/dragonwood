@@ -50,7 +50,7 @@ export class Game {
         return `Game started with ${playersNum} ${playersPluralized}.`
     }
 
-    initializeLandscape() {
+    private initializeLandscape() {
         for (let i = 0; MAX_NUMBER_OF_CARDS_ON_LANDSCAPE > i; i++ ) {
             this.moveCardFromDragonWoodDeckToLandscape()
         }
