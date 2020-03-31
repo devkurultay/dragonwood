@@ -5,7 +5,7 @@ import {
 } from '../gameplay/actions'
 import { Player } from '../entities/player'
 import { AdventurerCard, LuckyLadyBugCard } from '../entities/advernture_cards'
-import { createAdventurerCards } from '../gameplay/helpers'
+import { createAdventurerCards, createDragonWoodCards } from '../gameplay/helpers'
 
 describe('Game', () => {
     it('should start game', () => {
@@ -26,6 +26,8 @@ describe('Game', () => {
         expect(game.landscape.length).to.equal(0)
         game.start()
         expect(game.landscape.length).to.equal(5)
+        const expectedNumberOfDragonWoodCards = createDragonWoodCards().length - 5
+        expect(game.dragonWoodCardsDeck.length).to.equal(expectedNumberOfDragonWoodCards)
     })
     it('should have Adventurer cards in its Adventurer cards Deck', () => {
         const numberOfPlayers = 4
