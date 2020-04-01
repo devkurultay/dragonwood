@@ -43,11 +43,8 @@ export class Game {
         this.adventurerCardsdeck = adventurerCards
         this.initializeLandscape()
 
-        const playersNum = this.players.length
-        const playersPluralized = playersNum > 1
-          ? 'players'
-          : 'player'
-        return `Game started with ${playersNum} ${playersPluralized}.`
+        const gameInitializedMsg = this.getGameInitializeMsg()
+        return gameInitializedMsg
     }
 
     private initializeLandscape() {
@@ -63,6 +60,14 @@ export class Game {
         } else {
             throw Error('Only 5 Dragonwood cards are allowed on the Landscape!')
         }
+    }
+
+    private getGameInitializeMsg() {
+        const playersNum = this.players.length
+        const playersPluralized = playersNum > 1
+          ? 'players'
+          : 'player'
+        return `Game started with ${playersNum} ${playersPluralized}.`
     }
 }
 
