@@ -1,5 +1,5 @@
 import { AdventurerCard } from '../entities/advernture_cards'
-import { CapturableCard, DragonWoodCard } from '../entities/dragonwood_cards'
+import { CapturableCard, DragonWoodCard, EventCard } from '../entities/dragonwood_cards'
 import { Player } from '../entities/player'
 import {
     INITIAL_NUMBER_OF_ADV_CARDS,

@@ -6,6 +6,7 @@ import {
 import { Player } from '../entities/player'
 import { AdventurerCard, LuckyLadyBugCard } from '../entities/advernture_cards'
 import { createAdventurerCards, createDragonWoodCards } from '../gameplay/helpers'
+import { EventCard, EventType } from '../entities/dragonwood_cards'
 
 describe('Game', () => {
     it('should start game', () => {
@@ -36,6 +37,12 @@ describe('Game', () => {
         expect(game.adventurerCardsdeck.length).to.equal(0)
         game.start()
         expect(game.adventurerCardsdeck.length).to.be.equal(expectedNumberOfAdventurerCardsInDeck)
+    })
+    it('should remove event cards from landscape when initialized', () => {
+        const eventCards = Array.from(Array(10)).map(() => new EventCard('one', 'instruction', EventType.DiscardOneAdvCard))
+        const game = new Game(2)
+        game.start()
+        game.landscape = eventCards
     })
 })
 
