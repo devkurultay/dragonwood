@@ -5,22 +5,15 @@ export enum WayToCapture {
 }
 
 export class Cost {
-  strike: number;
-  stomp: number;
-  scream: number;
-
-  constructor(strike: number, stomp: number, scream: number) {
-    this.strike = strike;
-    this.stomp = stomp;
-    this.scream = scream;
-  }
+  constructor(
+    public strike: number,
+    public stomp: number,
+    public scream: number
+  ) {}
 }
 
 export abstract class DragonWoodCard {
-  name: string;
-  constructor(name: string) {
-    this.name = name;
-  }
+  constructor(public name: string) {}
 }
 
 export type DragonWoodCards = Array<DragonWoodCard>;
@@ -37,20 +30,18 @@ export enum EventType {
 }
 
 export class EventCard extends DragonWoodCard implements CardWithInstruction {
-  instruction: string;
-  eventType: string;
-  constructor(name: string, instruction: string, eventType: string) {
+  constructor(
+    name: string,
+    public instruction: string,
+    public eventType: string
+  ) {
     super(name);
-    this.instruction = instruction;
-    this.eventType = eventType;
   }
 }
 
 export abstract class CapturableCard extends DragonWoodCard {
-  cost: Cost;
-  constructor(name: string, cost: Cost) {
+  constructor(name: string, public cost: Cost) {
     super(name);
-    this.cost = cost;
   }
 
   isEnoughScoresToCapture(wayToCapture: WayToCapture, score: number): boolean {
@@ -68,10 +59,8 @@ export abstract class CapturableCard extends DragonWoodCard {
 }
 
 export class CreatureCard extends CapturableCard {
-  victoryPoints: number;
-  constructor(name: string, cost: Cost, victoryPoints: number) {
+  constructor(name: string, cost: Cost, public victoryPoints: number) {
     super(name, cost);
-    this.victoryPoints = victoryPoints;
   }
 }
 
@@ -81,55 +70,33 @@ export enum EnhancementLifecycle {
 }
 
 export class PointsAdder {
-  anyAttempt: number;
-  strike: number;
-  stomp: number;
-  scream: number;
   constructor(
-    anyAttempt: number,
-    strike: number,
-    stomp: number,
-    scream: number
-  ) {
-    this.anyAttempt = anyAttempt;
-    this.strike = strike;
-    this.stomp = stomp;
-    this.scream = scream;
-  }
+    public anyAttempt: number,
+    public strike: number,
+    public stomp: number,
+    public scream: number
+  ) {}
 }
 
 export class EnhancementAbility {
-  cardUsageType: string;
-  canReRoll: boolean;
-  canBeUsedAsAnyAdvCard: boolean;
-  pointsAdder: PointsAdder | undefined;
   constructor(
-    cardUsageType: string,
-    canReRoll: boolean,
-    canBeUsedAsAnyAdvCard: boolean,
-    pointsAdder?: PointsAdder
-  ) {
-    this.cardUsageType = cardUsageType;
-    this.canReRoll = canReRoll;
-    this.canBeUsedAsAnyAdvCard = canBeUsedAsAnyAdvCard;
-    this.pointsAdder = pointsAdder;
-  }
+    public cardUsageType: string,
+    public canReRoll: boolean,
+    public canBeUsedAsAnyAdvCard: boolean,
+    public pointsAdder?: PointsAdder
+  ) {}
 }
 
 export class EnhancementCard
   extends CapturableCard
   implements CardWithInstruction
 {
-  ability: EnhancementAbility;
-  instruction: string;
   constructor(
     name: string,
     cost: Cost,
-    instruction: string,
-    ability: EnhancementAbility
+    public instruction: string,
+    public ability: EnhancementAbility
   ) {
     super(name, cost);
-    this.ability = ability;
-    this.instruction = instruction;
   }
 }
