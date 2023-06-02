@@ -7,6 +7,7 @@ import { Player } from "../entities/player";
 import {
   createAdventurerCards,
   createDragonWoodCards,
+  rollDice,
 } from "../gameplay/helpers";
 import { EventCard, EventType } from "../entities/dragonwood_cards";
 
@@ -38,9 +39,9 @@ describe("Game", () => {
     const numberOfPlayers = 4;
     const expectedNumberOfAdventurerCardsInDeck = 64 - 4 * 5;
     const game = new Game(numberOfPlayers);
-    expect(game.adventurerCardsdeck.length).to.equal(0);
+    expect(game.adventurerCardsDeck.length).to.equal(0);
     game.start();
-    expect(game.adventurerCardsdeck.length).to.be.equal(
+    expect(game.adventurerCardsDeck.length).to.be.equal(
       expectedNumberOfAdventurerCardsInDeck
     );
   });
@@ -62,5 +63,10 @@ describe("Helper functions", () => {
     giveInitialAdventurerCardsToUser(player, adventurerCards);
     expect(player.deck.length).to.equal(5);
     expect(adventurerCards.length).to.equal(59);
+  });
+  it("rollDice should return a number between 1 and 4", () => {
+    const diceRoll = rollDice();
+    expect(diceRoll).to.be.greaterThan(0);
+    expect(diceRoll).to.be.lessThan(5);
   });
 });

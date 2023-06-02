@@ -6,6 +6,7 @@ import { expect } from "chai";
 import { RegularCard } from "../entities/advernture_cards";
 
 describe("helpers", () => {
+  // TODO: test createAdventurerCards extensively
   it("createAdventurerCards creates an array of adventurer cards", () => {
     const cards = createAdventurerCards();
     expect(cards.length).to.equal(64);

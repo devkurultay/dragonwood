@@ -37,3 +37,8 @@ export function createPlayers(numberOfPlayers: number) {
   const num = createArrayOfNumbers(numberOfPlayers, 1);
   return num.map((n: number) => new Player());
 }
+
+export function rollDice(): number {
+  //TODO: implement
+  return 8;
+}
