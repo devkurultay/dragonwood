@@ -1,7 +1,7 @@
 export enum WayToCapture {
-  Strike = "strike",
-  Stomp = "stomp",
-  Scream = "scream",
+  Strike = "Strike",
+  Stomp = "Stomp",
+  Scream = "Scream",
 }
 
 export class Cost {
@@ -53,7 +53,7 @@ export abstract class CapturableCard extends DragonWoodCard {
     this.cost = cost;
   }
 
-  isEnoughScoresToCapture(wayToCapture: string, score: number): boolean {
+  isEnoughScoresToCapture(wayToCapture: WayToCapture, score: number): boolean {
     switch (wayToCapture) {
       case WayToCapture.Strike:
         return score >= this.cost.strike;

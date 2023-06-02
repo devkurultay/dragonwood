@@ -1,5 +1,9 @@
 import { AdventurerCard, AdventurerCards } from "../entities/advernture_cards";
-import { CapturableCard, DragonWoodCards } from "../entities/dragonwood_cards";
+import {
+  CapturableCard,
+  DragonWoodCards,
+  WayToCapture,
+} from "../entities/dragonwood_cards";
 import { Player } from "../entities/player";
 import {
   INITIAL_NUMBER_OF_ADV_CARDS,
@@ -36,7 +40,7 @@ export class Game {
   players: Array<Player> = [];
   dragonWoodCardsDeck: DragonWoodCards = [];
   landscape: DragonWoodCards = [];
-  adventurerCardsdeck: AdventurerCards = [];
+  adventurerCardsDeck: AdventurerCards = [];
 
   constructor(numberOfPlayers: number = 4) {
     this.players = createPlayers(numberOfPlayers);
@@ -46,7 +50,7 @@ export class Game {
     this.dragonWoodCardsDeck = createDragonWoodCards();
     const adventurerCards = createAdventurerCards();
     distributeAdventurerCards(this.players, adventurerCards);
-    this.adventurerCardsdeck = adventurerCards;
+    this.adventurerCardsDeck = adventurerCards;
     this.initializeLandscape();
 
     const gameInitializedMsg = this.getGameInitializeMsg();
@@ -75,15 +79,15 @@ export class Game {
   }
 }
 
-class Movement {
+class Move {
   landscapeCard: CapturableCard;
   advCards: AdventurerCards;
-  wayToCapture: string;
+  wayToCapture: WayToCapture;
 
   constructor(
     currentCard: CapturableCard,
     advCards: AdventurerCards,
-    wayToCapture: string
+    wayToCapture: WayToCapture
   ) {
     this.landscapeCard = currentCard;
     this.advCards = advCards;
