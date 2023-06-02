@@ -1,15 +1,15 @@
-import { AdventurerCard } from "./advernture_cards";
-import { DragonWoodCard } from "./dragonwood_cards";
+import { AdventurerCard, AdventurerCards } from "./advernture_cards";
+import { DragonWoodCard, DragonWoodCards } from "./dragonwood_cards";
 
 export class Player {
-    deck: Array<AdventurerCard> = []
-    dragonWoodDeck: Array<DragonWoodCard> = []
+  deck: AdventurerCards = [];
+  dragonWoodDeck: DragonWoodCards = [];
 
-    addCardToDeck(adventurerCard: AdventurerCard) {
-        this.deck.push(adventurerCard)
-    }
+  addCardToDeck(adventurerCard: AdventurerCard) {
+    this.deck.push(adventurerCard);
+  }
 
-    addCardToDragonWoodDeck(dragonWoodCard: DragonWoodCard) {
-        this.dragonWoodDeck.push(dragonWoodCard)
-    }
+  addCardToDragonWoodDeck(dragonWoodCard: DragonWoodCard) {
+    this.dragonWoodDeck.push(dragonWoodCard);
+  }
 }
