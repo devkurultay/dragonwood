@@ -58,4 +58,5 @@ describe("Game", () => {
 
     rollDiceStub.restore();
   });
+  // TODO: test for pickNextPlayerIndex
 });

@@ -44,6 +44,7 @@ export class Game {
   dragonWoodCardsDeck: DragonWoodCards = [];
   landscape: DragonWoodCards = [];
   adventurerCardsDeck: AdventurerCards = [];
+  currentPlayerIndex: number = 0;
 
   constructor(numberOfPlayers: number = 4) {
     this.players = createPlayers(numberOfPlayers);
@@ -61,6 +62,7 @@ export class Game {
     distributeAdventurerCards(this.players, adventurerCards);
     this.adventurerCardsDeck = adventurerCards;
     this.initializeLandscape();
+    this.currentPlayerIndex = this.pickNextPlayerIndex();
 
     const gameInitializedMsg = this.getGameInitializeMsg();
     return gameInitializedMsg;
