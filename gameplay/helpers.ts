@@ -30,6 +30,7 @@ export function createAdventurerCards(): AdventurerCards {
 }
 
 export function createDragonWoodCards(): DragonWoodCards {
+  // TODO: shuffle cards
   return [...EnhancementCards, ...EventCards, ...CreatureCards];
 }
 
