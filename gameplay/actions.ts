@@ -37,7 +37,7 @@ export function distributeAdventurerCards(
   });
 }
 
-type NumberOfPieces = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9;
+type NumberOfDicePieces = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9;
 
 export class Game {
   players: Players = [];
@@ -83,7 +83,7 @@ export class Game {
     }
   }
 
-  rollDice(numberOfPieces: NumberOfPieces) {
+  rollDice(numberOfPieces: NumberOfDicePieces) {
     const result = Array.from(Array(numberOfPieces)).map(rollDice);
     return result.reduce((acc, curr) => acc + curr, 0);
   }
