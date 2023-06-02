@@ -96,7 +96,7 @@ const luckyMushroom = new EnhancementCard(
   new EnhancementAbility(EnhancementLifecycle.UseThroughoutGage, true, false)
 );
 
-export const EnhancementCards = [
+export const EnhancementCards: DragonWoodCards = [
   charmedPotion,
   friendlyBunny,
   lightningBolt,

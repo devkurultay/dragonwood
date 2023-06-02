@@ -4,7 +4,7 @@ import {
   DragonWoodCards,
   WayToCapture,
 } from "../entities/dragonwood_cards";
-import { Player } from "../entities/player";
+import { Player, Players } from "../entities/player";
 import {
   INITIAL_NUMBER_OF_ADV_CARDS,
   MAX_NUMBER_OF_CARDS_ON_LANDSCAPE,
@@ -29,18 +29,18 @@ export function giveUserAdventurerCards(
 }
 
 export function distributeAdventurerCards(
-  players: Array<Player>,
-  adventurerCards: AdventurerCards
+  players: Players,
+  advCards: AdventurerCards
 ) {
   players.forEach((player: Player) => {
-    giveUserAdventurerCards(player, adventurerCards);
+    giveUserAdventurerCards(player, advCards);
   });
 }
 
 type NumberOfPieces = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9;
 
 export class Game {
-  players: Array<Player> = [];
+  players: Players = [];
   dragonWoodCardsDeck: DragonWoodCards = [];
   landscape: DragonWoodCards = [];
   adventurerCardsDeck: AdventurerCards = [];

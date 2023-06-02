@@ -33,7 +33,7 @@ export class EventCard extends DragonWoodCard implements CardWithInstruction {
   constructor(
     name: string,
     public instruction: string,
-    public eventType: string
+    public eventType: EventType
   ) {
     super(name);
   }

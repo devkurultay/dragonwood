@@ -13,3 +13,5 @@ export class Player {
     this.dragonWoodDeck.push(dragonWoodCard);
   }
 }
+
+export type Players = Array<Player>;
