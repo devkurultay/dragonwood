@@ -26,6 +26,7 @@ export function createAdventurerCards(): AdventurerCards {
   luckyLadybugNumbers.forEach((_: number) => {
     cards.push(new LuckyLadyBugCard());
   });
+  // TODO: shuffle cards
   return cards;
 }
 
