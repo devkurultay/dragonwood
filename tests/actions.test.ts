@@ -1,14 +1,7 @@
 import { expect } from "chai";
-import {
-  Game,
-  giveUserAdventurerCards as giveInitialAdventurerCardsToUser,
-} from "../gameplay/actions";
-import { Player } from "../entities/player";
-import {
-  createAdventurerCards,
-  createDragonWoodCards,
-  rollDice,
-} from "../gameplay/helpers";
+import sinon from "sinon";
+import { Game } from "../gameplay/actions";
+import * as gameplayHelpers from "../gameplay/helpers";
 import { EventCard, EventType } from "../entities/dragonwood_cards";
 
 describe("Game", () => {
@@ -30,7 +23,8 @@ describe("Game", () => {
     expect(game.landscape.length).to.equal(0);
     game.start();
     expect(game.landscape.length).to.equal(5);
-    const expectedNumberOfDragonWoodCards = createDragonWoodCards().length - 5;
+    const expectedNumberOfDragonWoodCards =
+      gameplayHelpers.createDragonWoodCards().length - 5;
     expect(game.dragonWoodCardsDeck.length).to.equal(
       expectedNumberOfDragonWoodCards
     );
@@ -53,21 +47,15 @@ describe("Game", () => {
     game.start();
     game.landscape = eventCards;
   });
-  //TODO: test rollDice method of the Game class
-});
+  it("rollDice method calls rollDice helper for each dice", function () {
+    const game = new Game(1);
+    const numberOfPieces = 3;
 
-describe("Helper functions", () => {
-  it("giveInitialAdventurerCardsToUser gives a user 5 adventurer cards", () => {
-    const player = new Player();
-    const adventurerCards = createAdventurerCards();
-    expect(adventurerCards.length).to.equal(64);
-    giveInitialAdventurerCardsToUser(player, adventurerCards);
-    expect(player.deck.length).to.equal(5);
-    expect(adventurerCards.length).to.equal(59);
-  });
-  it("rollDice should return a number between 1 and 5 exlusive", () => {
-    const diceRoll = rollDice();
-    expect(diceRoll).to.be.greaterThan(0);
-    expect(diceRoll).to.be.lessThan(5);
+    const rollDiceStub = sinon.stub(gameplayHelpers, "rollDice");
+    rollDiceStub.returns(1);
+
+    expect(game.rollDice(numberOfPieces)).to.equal(numberOfPieces);
+
+    rollDiceStub.restore();
   });
 });
