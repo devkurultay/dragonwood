@@ -13,6 +13,7 @@ import {
   createPlayers,
   createAdventurerCards,
   createDragonWoodCards,
+  rollDice,
 } from "./helpers";
 
 export function giveUserAdventurerCards(
@@ -35,6 +36,8 @@ export function distributeAdventurerCards(
     giveUserAdventurerCards(player, adventurerCards);
   });
 }
+
+type NumberOfPieces = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9;
 
 export class Game {
   players: Array<Player> = [];
@@ -70,6 +73,11 @@ export class Game {
     } else {
       throw Error("Only 5 Dragonwood cards are allowed on the Landscape!");
     }
+  }
+
+  rollDice(numberOfPieces: NumberOfPieces) {
+    const result = Array.from(Array(numberOfPieces)).map(rollDice);
+    return result.reduce((acc, curr) => acc + curr, 0);
   }
 
   private getGameInitializeMsg() {

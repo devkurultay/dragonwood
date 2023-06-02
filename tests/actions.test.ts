@@ -53,6 +53,7 @@ describe("Game", () => {
     game.start();
     game.landscape = eventCards;
   });
+  //TODO: test rollDice method of the Game class
 });
 
 describe("Helper functions", () => {
