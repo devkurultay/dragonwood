@@ -39,6 +39,14 @@ export function createPlayers(numberOfPlayers: number) {
 }
 
 export function rollDice(): number {
-  //TODO: implement
-  return 8;
+  // we represent the dice as an array
+  const dice: number[] = [2, 2, 3, 3, 1, 4];
+
+  // use Math.random function which returns a value between 0 (inclusive) and 1 (exclusive)
+  // multiply it by the length of the dice array to get a value between 0 and length of array
+  // use Math.floor to round down to nearest whole number which gives us a valid index
+  const randomIndex: number = Math.floor(Math.random() * dice.length);
+
+  // use the randomly chosen index to select a value from the dice array
+  return dice[randomIndex];
 }

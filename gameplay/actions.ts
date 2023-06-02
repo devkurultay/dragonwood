@@ -49,6 +49,12 @@ export class Game {
     this.players = createPlayers(numberOfPlayers);
   }
 
+  private pickNextPlayerIndex() {
+    const playersNum = this.players.length;
+    const index = Math.floor(Math.random() * playersNum);
+    return index;
+  }
+
   start() {
     this.dragonWoodCardsDeck = createDragonWoodCards();
     const adventurerCards = createAdventurerCards();

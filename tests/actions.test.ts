@@ -65,7 +65,7 @@ describe("Helper functions", () => {
     expect(player.deck.length).to.equal(5);
     expect(adventurerCards.length).to.equal(59);
   });
-  it("rollDice should return a number between 1 and 4", () => {
+  it("rollDice should return a number between 1 and 5 exlusive", () => {
     const diceRoll = rollDice();
     expect(diceRoll).to.be.greaterThan(0);
     expect(diceRoll).to.be.lessThan(5);
