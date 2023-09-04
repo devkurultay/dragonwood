@@ -1,6 +1,8 @@
 import { AdventurerCard, AdventurerCards } from "../entities/advernture_cards";
 import {
   CapturableCard,
+  CapturableCards,
+  DragonWoodCard,
   DragonWoodCards,
   WayToCapture,
 } from "../entities/dragonwood_cards";
@@ -48,6 +50,7 @@ export class Game {
 
   constructor(numberOfPlayers: number = 4) {
     this.players = createPlayers(numberOfPlayers);
+    this.start();
   }
 
   private pickNextPlayerIndex() {
@@ -56,7 +59,7 @@ export class Game {
     return index;
   }
 
-  start() {
+  private start() {
     this.dragonWoodCardsDeck = createDragonWoodCards();
     const adventurerCards = createAdventurerCards();
     distributeAdventurerCards(this.players, adventurerCards);
@@ -93,24 +96,47 @@ export class Game {
     const playersPluralized = playersNum > 1 ? "players" : "player";
     return `Game started with ${playersNum} ${playersPluralized}.`;
   }
+
+  move() {
+    const currentPlayer: Player = this.players[this.currentPlayerIndex];
+
+    // TODO: take capturableCard as a user's choice via GUI
+    const capturableCardsFromLandscape: CapturableCards = this.landscape.filter(
+      (item) => {
+        // return items with isEnoughScoresToCapture attribute
+        return (
+          item instanceof CapturableCard && !!item?.isEnoughScoresToCapture
+        );
+      }
+    ) as CapturableCards;
+    console.log("=====", capturableCardsFromLandscape);
+    const capturableCardIndex = Math.floor(
+      Math.random() * capturableCardsFromLandscape.length
+    );
+    const capturableCard: CapturableCard =
+      capturableCardsFromLandscape[capturableCardIndex];
+
+    const userAdvCards = currentPlayer.getHand();
+    const wayToCapture = WayToCapture.Strike; // TODO: take user's choice as an input
+    const move = new Move(capturableCard, userAdvCards, wayToCapture);
+    move.commit();
+
+    if (this.currentPlayerIndex === this.players.length - 1) {
+      this.currentPlayerIndex = 0;
+    } else {
+      this.currentPlayerIndex++;
+    }
+  }
 }
 
 class Move {
-  landscapeCard: CapturableCard;
-  advCards: AdventurerCards;
-  wayToCapture: WayToCapture;
-
   constructor(
-    currentCard: CapturableCard,
-    advCards: AdventurerCards,
-    wayToCapture: WayToCapture
-  ) {
-    this.landscapeCard = currentCard;
-    this.advCards = advCards;
-    this.wayToCapture = wayToCapture;
-  }
+    public landscapeCard: CapturableCard,
+    public advCards: AdventurerCards,
+    public wayToCapture: WayToCapture
+  ) {}
 
-  move() {
+  commit() {
     const score = 3;
     const isEnough = this.landscapeCard.isEnoughScoresToCapture(
       this.wayToCapture,
@@ -119,8 +145,10 @@ class Move {
     if (isEnough) {
       // remove landscapeCard from deck and put it to user's deck
       console.log("Yes! the user got this card!");
+      return true;
     } else {
       console.log("No :( the user is going to be lucky next time!");
+      return false;
     }
   }
 }

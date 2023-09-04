@@ -58,6 +58,8 @@ export abstract class CapturableCard extends DragonWoodCard {
   }
 }
 
+export type CapturableCards = Array<CapturableCard>;
+
 export class CreatureCard extends CapturableCard {
   constructor(name: string, cost: Cost, public victoryPoints: number) {
     super(name, cost);
