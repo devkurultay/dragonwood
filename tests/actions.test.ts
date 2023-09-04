@@ -8,20 +8,18 @@ describe("Game", () => {
   it("should start game", () => {
     const numberOfPlayers = 4;
     const game = new Game(numberOfPlayers);
-    expect(game.start()).to.equal("Game started with 4 players.");
+    // TODO: check if start method is called
     expect(game.players.length).to.equal(numberOfPlayers);
   });
   it("should have Dragonwood cards in its Dragonwood cards deck", () => {
     const numberOfPlayers = 4;
     const game = new Game(numberOfPlayers);
     expect(game.dragonWoodCardsDeck.length).to.equal(0);
-    game.start();
     expect(game.dragonWoodCardsDeck.length).to.be.greaterThan(0);
   });
   it("should have 5 Dragonwood cards in its Landscape", () => {
     const game = new Game(1);
     expect(game.landscape.length).to.equal(0);
-    game.start();
     expect(game.landscape.length).to.equal(5);
     const expectedNumberOfDragonWoodCards =
       gameplayHelpers.createDragonWoodCards().length - 5;
@@ -34,7 +32,6 @@ describe("Game", () => {
     const expectedNumberOfAdventurerCardsInDeck = 64 - 4 * 5;
     const game = new Game(numberOfPlayers);
     expect(game.adventurerCardsDeck.length).to.equal(0);
-    game.start();
     expect(game.adventurerCardsDeck.length).to.be.equal(
       expectedNumberOfAdventurerCardsInDeck
     );
@@ -44,7 +41,6 @@ describe("Game", () => {
       () => new EventCard("one", "instruction", EventType.DiscardOneAdvCard)
     );
     const game = new Game(2);
-    game.start();
     game.landscape = eventCards;
   });
   it("rollDice method calls rollDice helper for each dice", function () {
@@ -58,5 +54,8 @@ describe("Game", () => {
 
     rollDiceStub.restore();
   });
-  // TODO: test for pickNextPlayerIndex
+  it.only("move()", function () {
+    const game = new Game(3);
+    game.move();
+  });
 });

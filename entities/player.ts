@@ -2,15 +2,19 @@ import { AdventurerCard, AdventurerCards } from "./advernture_cards";
 import { DragonWoodCard, DragonWoodCards } from "./dragonwood_cards";
 
 export class Player {
-  deck: AdventurerCards = [];
-  dragonWoodDeck: DragonWoodCards = [];
+  private adventurerCardsHand: AdventurerCards = [];
+  private dragonWoodCardsHand: DragonWoodCards = [];
+
+  getHand() {
+    return this.adventurerCardsHand;
+  }
 
   addCardToDeck(adventurerCard: AdventurerCard) {
-    this.deck.push(adventurerCard);
+    this.adventurerCardsHand.push(adventurerCard);
   }
 
   addCardToDragonWoodDeck(dragonWoodCard: DragonWoodCard) {
-    this.dragonWoodDeck.push(dragonWoodCard);
+    this.dragonWoodCardsHand.push(dragonWoodCard);
   }
 }
 

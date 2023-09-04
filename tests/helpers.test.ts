@@ -26,7 +26,7 @@ describe("helpers", () => {
     const adventurerCards = createAdventurerCards();
     expect(adventurerCards.length).to.equal(64);
     giveInitialAdventurerCardsToUser(player, adventurerCards);
-    expect(player.deck.length).to.equal(5);
+    expect(player.getHand().length).to.equal(5);
     expect(adventurerCards.length).to.equal(59);
   });
 
